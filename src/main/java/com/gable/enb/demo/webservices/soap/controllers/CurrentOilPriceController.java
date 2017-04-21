@@ -7,13 +7,13 @@ package com.gable.enb.demo.webservices.soap.controllers;
 
 import com.gable.enb.demo.webservices.soap.model.CurrentOilModel;
 import com.gable.enb.demo.webservices.soap.services.OilServices;
+import com.google.gson.Gson;
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.parsers.ParserConfigurationException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,14 +29,7 @@ import org.xml.sax.SAXException;
 @RequestMapping(value = "/oil")
 public class CurrentOilPriceController extends AbstractController {
 
-    private final Log logging = LogFactory.getLog(
-            CurrentOilPriceController.class.getName());
-
-    @Autowired
-    private OilServices oilServices;
-
-    public CurrentOilPriceController() {
-    }
+    private final Log logging = LogFactory.getLog(CurrentOilPriceController.class.getName());
 
     @RequestMapping(value = "/")
     public @ResponseBody
@@ -44,6 +37,8 @@ public class CurrentOilPriceController extends AbstractController {
         logging.info("getOilPrice()");
 
         CurrentOilModel currentOilModel = null;
+        OilServices oilServices = new OilServices();
+        
         try {
             currentOilModel = oilServices.currentOilServices();
         } catch (ParserConfigurationException ex) {
@@ -54,7 +49,11 @@ public class CurrentOilPriceController extends AbstractController {
             logging.error(ex.getMessage(), ex);
         }
 
-        return currentOilModel.toString();
+        Gson gson = new Gson();
+        String response = gson.toJson(currentOilModel);
+        logging.info(response);
+
+        return response;
     }
 
     protected ModelAndView handleRequestInternal(

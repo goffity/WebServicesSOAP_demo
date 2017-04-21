@@ -13,15 +13,21 @@
     <dependencies>
         <dependency>
             <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <version>2.5</version>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.0.1</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>javax.servlet.jsp</groupId>
-            <artifactId>jsp-api</artifactId>
-            <version>2.1</version>
-            <scope>provided</scope>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-core</artifactId>
+            <version>1.3</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -44,23 +50,15 @@
             <version>4.2.1.RELEASE</version>
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-core</artifactId>
-            <version>1.3</version>
-            <scope>test</scope>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>2.8.0</version>
         </dependency>
-        
     </dependencies>
 
     <build>
@@ -95,42 +93,6 @@
                             <staleFile>${project.build.directory}/jaxws/stale/pttinfo.asmx.stale</staleFile>
                         </configuration>
                         <id>wsimport-generate-pttinfo.asmx</id>
-                        <phase>generate-sources</phase>
-                    </execution>
-                    <execution>
-                        <goals>
-                            <goal>wsimport</goal>
-                        </goals>
-                        <configuration>
-                            <wsdlFiles>
-                                <wsdlFile>www.pttplc.com/webservice/pttinfo.asmx.wsdl</wsdlFile>
-                            </wsdlFiles>
-                            <packageName></packageName>
-                            <vmArgs>
-                                <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
-                            </vmArgs>
-                            <wsdlLocation>http://www.pttplc.com/webservice/pttinfo.asmx?wsdl</wsdlLocation>
-                            <staleFile>${project.build.directory}/jaxws/stale/pttinfo.asmx_1.stale</staleFile>
-                        </configuration>
-                        <id>wsimport-generate-pttinfo.asmx_1</id>
-                        <phase>generate-sources</phase>
-                    </execution>
-                    <execution>
-                        <goals>
-                            <goal>wsimport</goal>
-                        </goals>
-                        <configuration>
-                            <wsdlFiles>
-                                <wsdlFile>www.pttplc.com/webservice/pttinfo.asmx.wsdl</wsdlFile>
-                            </wsdlFiles>
-                            <packageName></packageName>
-                            <vmArgs>
-                                <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
-                            </vmArgs>
-                            <wsdlLocation>http://www.pttplc.com/webservice/pttinfo.asmx?wsdl</wsdlLocation>
-                            <staleFile>${project.build.directory}/jaxws/stale/pttinfo.asmx_2.stale</staleFile>
-                        </configuration>
-                        <id>wsimport-generate-pttinfo.asmx_2</id>
                         <phase>generate-sources</phase>
                     </execution>
                 </executions>
